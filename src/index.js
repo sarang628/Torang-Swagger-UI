@@ -11,14 +11,14 @@ function component() {
     return element;
 }
 
-function test() {
+function loadSwagger() {
     SwaggerUI({
         dom_id: '#myDomId',
-        url: 'https://petstore.swagger.io/v2/swagger.json'
+        url: 'torang.yml'
     })
 }
 
 document.body.appendChild(component());
-test()
+loadSwagger()
 // or use require if you prefer
 
