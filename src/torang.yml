@@ -10,7 +10,8 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   version: 1.0.12
 servers:
-  - url: http://sarang628.iptime.org:8081
+  # - url: http://sarang628.iptime.org:8081
+  - url: http://localhost:8081
 paths:
   /pet:
     put:
@@ -714,7 +715,6 @@ paths:
     get:
       tags:
         - feed
-      parameters:
       responses:
         '200':
           description: successful operation
