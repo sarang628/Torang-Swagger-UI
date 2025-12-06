@@ -6,8 +6,8 @@ info:
   version: 1.0.12
 
 servers:
-  # - url: http://sarang628.iptime.org:8081
-  - url: http://localhost:8081
+   - url: http://sarang628.iptime.org:8081
+#  - url: http://localhost:8081
 
 tags:
   - name: feed
