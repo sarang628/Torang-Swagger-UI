@@ -47,10 +47,42 @@ paths:
         - bearerAuth: []
   "/feed/v1/favorite":
     get:
+      security:
+        - bearerAuth: []
+      description: Get favorite feed
       responses:
-      '200':
-        description: successful operation
-
+        '200':
+          description: OK
+        '405':
+          description: FAILED
+  "/feed/v1/like":
+    get:
+      security:
+        - bearerAuth: []
+      description: Get favorite feed
+      responses:
+        '200':
+          description: OK
+        '405':
+          description: FAILED
+  "/emailLoginPlain":
+    post:
+      parameters:
+        - in: query
+          name: email
+          required: true
+          schema:
+            type: string
+            example : sry_ang@naver.com
+        - in: query
+          name: password
+          required: true
+          schema:
+            type: string
+            example : Torang!234
+      responses:
+        '200':
+          description: OK
 components:
   securitySchemes:
     bearerAuth:
