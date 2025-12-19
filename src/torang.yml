@@ -7,7 +7,7 @@ info:
 
 servers:
   - url: http://sarang628.iptime.org:8081
-  # - url: http://localhost:8081
+  - url: http://localhost:8081
 
 tags:
   - name: feed
@@ -83,6 +83,26 @@ paths:
       responses:
         '200':
           description: OK
+  "/feed/v1/feedGrid/{reviewId}/offset/{offset}":
+    get:
+      parameters:
+        - name : reviewId
+          in: path
+          schema:
+            type: integer
+            example : 631
+          required: true
+        - name : offset
+          in: path
+          schema:
+            type: integer
+            example : 20
+          required: true
+      responses:
+        '200':
+          description: successful operation
+
+
 components:
   securitySchemes:
     bearerAuth:
