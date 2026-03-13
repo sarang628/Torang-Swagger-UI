@@ -1,0 +1,122 @@
+openapi: 3.0.4
+info:
+  title: Swagger Petstore - OpenAPI 3.0
+  description: |-
+    This is a Torang Server based on the OpenAPI 3.0 specification.
+  version: 1.0.12
+
+servers:
+  - url: http://sarang628.iptime.org:8081
+  - url: http://localhost:8081
+
+tags:
+  - name: feed
+    description: Feed API
+
+paths:
+  "/feed/v1/page/{page}/size/{size}":
+    get:
+      tags:
+        - feed
+      summary: Get paged feed list
+      operationId: getFeedPage
+      parameters:
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+            example : 0
+        - name: size
+          in: path
+          required: true
+          schema:
+            type: integer
+            example : 20
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FeedResponseModel'
+
+      security:
+        - bearerAuth: []
+  "/feed/v1/favorite":
+    get:
+      security:
+        - bearerAuth: []
+      description: Get favorite feed
+      responses:
+        '200':
+          description: OK
+        '405':
+          description: FAILED
+  "/feed/v1/like":
+    get:
+      security:
+        - bearerAuth: []
+      description: Get favorite feed
+      responses:
+        '200':
+          description: OK
+        '405':
+          description: FAILED
+  "/emailLoginPlain":
+    post:
+      parameters:
+        - in: query
+          name: email
+          required: true
+          schema:
+            type: string
+            example : sry_ang@naver.com
+        - in: query
+          name: password
+          required: true
+          schema:
+            type: string
+            example : Torang!234
+      responses:
+        '200':
+          description: OK
+  "/feed/v1/feedGrid/{reviewId}/offset/{offset}":
+    get:
+      parameters:
+        - name : reviewId
+          in: path
+          schema:
+            type: integer
+            example : 631
+          required: true
+        - name : offset
+          in: path
+          schema:
+            type: integer
+            example : 20
+          required: true
+      responses:
+        '200':
+          description: successful operation
+
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    FeedResponseModel:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        content:
+          type: string
