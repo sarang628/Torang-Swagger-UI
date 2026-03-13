@@ -1,9 +1,9 @@
 openapi: 3.0.4
 info:
-  title: Swagger Petstore - OpenAPI 3.0
+  title: 토랑(Torang) API
   description: |-
-    This is a Torang Server based on the OpenAPI 3.0 specification.
-  version: 1.0.12
+    This is a Torang API allows you to get Application data.
+  version: 1.0.0
 
 servers:
   - url: http://sarang628.iptime.org:8081
@@ -47,6 +47,8 @@ paths:
         - bearerAuth: []
   "/feed/v1/favorite":
     get:
+      tags:
+        - favorite
       security:
         - bearerAuth: []
       description: Get favorite feed
@@ -57,6 +59,8 @@ paths:
           description: FAILED
   "/feed/v1/like":
     get:
+      tags:
+        - like
       security:
         - bearerAuth: []
       description: Get favorite feed
@@ -67,6 +71,8 @@ paths:
           description: FAILED
   "/emailLoginPlain":
     post:
+      tags:
+        - login
       parameters:
         - in: query
           name: email
@@ -85,6 +91,8 @@ paths:
           description: OK
   "/feed/v1/feedGrid/{reviewId}/offset/{offset}":
     get:
+      tags:
+        - feed
       parameters:
         - name : reviewId
           in: path
@@ -97,6 +105,35 @@ paths:
           schema:
             type: integer
             example : 20
+          required: true
+      responses:
+        '200':
+          description: successful operation
+  "/api/menu/{restaurantId}":
+    get:
+      tags:
+        - menu
+      parameters:
+        - name: restaurantId
+          in: path
+          schema:
+            type: integer
+            example: 234
+          required: true
+      responses:
+        '200':
+          description: successful operation
+  "/api/menu/v1/{restaurantId}":
+    get:
+      tags:
+        - menu
+      summary: Finds Menus by RestaurantId
+      parameters:
+        - name: restaurantId
+          in: path
+          schema:
+            type: integer
+            example: 362
           required: true
       responses:
         '200':
