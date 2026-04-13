@@ -14,7 +14,7 @@ tags:
     description: Feed API
 
 paths:
-  "/feed/v1/page/{page}/size/{size}":
+  "/api/feed/page/{page}/size/{size}":
     get:
       tags:
         - feed
@@ -42,9 +42,32 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/FeedResponseModel'
-
       security:
         - bearerAuth: []
+  "/getFeedsWithPage":
+    post:
+      tags:
+        - feed
+      summary: Get paged feed list
+      operationId: getFeedPage
+      parameters:
+        - name: page
+          in: query
+          required: true
+          schema:
+            type: integer
+            example: 0
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FeedResponseModel'
+      security:
+        - bearerAuth: [ ]
   "/feed/v1/favorite":
     get:
       tags:
